@@ -6,13 +6,13 @@ from pprint import pprint
 #     return tier_S
 
 
-def get_data():
-    pprint(data)
-    return data
+def get_team_data():
+    pprint(team_data)
+    return team_data
 
 
-def build_data(input):
-    user_team.append(input)
+def add_champ(champ_name):
+    user_team.append(champ_name)
     print(user_team)
 
 
@@ -26,7 +26,7 @@ tier_S = []
 user_team = []
 
 # TODO: use web scraper to pull the following data automatically
-data = {
+team_data = {
     'void_brawlers':
         ['khazix',
          'blitzcrank',
