@@ -1,8 +1,13 @@
-# from pprint import pprint
+from pprint import pprint
+# def get_data():
+#     for key in data:
+#         tier_S.append(key)
+#         print("KEY = " + key)
+#     return tier_S
 
 
 def get_team_data():
-    # pprint(team_data)
+    pprint(team_data)
     return team_data
 
 
