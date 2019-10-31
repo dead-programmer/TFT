@@ -41,8 +41,7 @@ user_team = []
 # TODO: use web scraper to pull the following data automatically
 team_data = {
     'void_brawlers':
-        ['S',
-         'khazix',
+        ['khazix',
          'blitzcrank',
          'reksai',
          'vi',
