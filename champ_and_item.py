@@ -1,4 +1,4 @@
-# Stores Champions' data, including name and synegies
+# Stores Champions' data, including name and synergies
 # TODO: Stores Item data
 
 champ_data = {
