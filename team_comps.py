@@ -28,15 +28,11 @@ def delete_champ(champ_string):                            # -champion_name
     champ_name_length = len(champ_string) - 1              # length = len(champion_name)
     champ_name = champ_string[-champ_name_length:]
 
-    if valid_name(champ_name):
-        if champ_name in user_team:
-            user_team.remove(champ_name)                   # remove("champion_name")
-            print(user_team)
-        else:
-            print("Champion %s is not in the user champion list, please enter a valid champion's name" % champ_name)
-    else:
-        print("Champion %s is not valid, please enter a valid champion's name" % champ_name)
+    if champ_name in user_team:
+        user_team.remove(champ_name)  # remove("champion_name")
         print(user_team)
+    else:
+        print("Champion %s is not in the user champion list, please enter a valid champion's name" % champ_name)
 
 
 tier_S = []
