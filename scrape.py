@@ -37,4 +37,4 @@ url = "https://tftactics.gg/tierlist/team-comps/"
 html = requests.get(url).text
 renderedHTML = render(url)
 soup = BeautifulSoup(renderedHTML)
-
+soup.prettify()
