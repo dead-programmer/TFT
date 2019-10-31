@@ -1,9 +1,13 @@
 from pprint import pprint
-# def get_data():
-#     for key in data:
-#         tier_S.append(key)
-#         print("KEY = " + key)
-#     return tier_S
+import champ_and_item
+
+
+def valid_name(name):
+    found = False
+    for i in champ_and_item.champ_data:
+        if name == i:
+            found = True
+    return bool(found)
 
 
 def get_team_data():
@@ -12,14 +16,27 @@ def get_team_data():
 
 
 def add_champ(champ_name):
-    user_team.append(champ_name)
-    print(user_team)
+    if valid_name(champ_name):
+        user_team.append(champ_name)
+        print(user_team)
+    else:
+        print("Champion %s is not valid, please enter a valid champion's name" % champ_name)
+        print(user_team)
 
 
-def delete_champ(deletion_input):                            # -champion_name
-    champ_name_length = len(deletion_input) - 1              # length = len(champion_name)
-    user_team.remove(deletion_input[-champ_name_length:])    # remove("champion_name")
-    print(user_team)
+def delete_champ(champ_string):                            # -champion_name
+    champ_name_length = len(champ_string) - 1              # length = len(champion_name)
+    champ_name = champ_string[-champ_name_length:]
+
+    if valid_name(champ_name):
+        if champ_name in user_team:
+            user_team.remove(champ_name)                   # remove("champion_name")
+            print(user_team)
+        else:
+            print("Champion %s is not in the user champion list, please enter a valid champion's name" % champ_name)
+    else:
+        print("Champion %s is not valid, please enter a valid champion's name" % champ_name)
+        print(user_team)
 
 
 tier_S = []
