@@ -37,4 +37,7 @@ url = "https://tftactics.gg/tierlist/team-comps/"
 html = requests.get(url).text
 renderedHTML = render(url)
 soup = BeautifulSoup(renderedHTML)
-soup.prettify()
+#Returns a list of all the team names with their tiers
+teamNames = soup.find_all(class_="team-name")
+#Returns a list of all the team characters (use their hrefs to parse the names)
+teamCharacters = soup.find_all(class_="team-characters")
