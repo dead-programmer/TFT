@@ -1,6 +1,6 @@
 import calculate
 import team_comps
-
+import scrape
 
 user_input = []
 
