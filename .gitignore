@@ -2,7 +2,7 @@
 tft/
 .idea/
 __pycache__/
-
+.DSStore
 # Compiled source #
 ###################
 *.com
