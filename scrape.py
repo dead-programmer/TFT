@@ -37,17 +37,20 @@ url = "https://tftactics.gg/tierlist/team-comps/"
 html = requests.get(url).text
 renderedHTML = render(url)
 soup = BeautifulSoup(renderedHTML,"html.parser")
-#Returns a list of all the team names with their tiers
-teamNames = soup.find_all(class_="team-name")
 #Returns a list of all the team characters (use their hrefs to parse the names)
 teamCharacters = soup.find_all(class_="team-characters")
-teamName = soup.find_all('div',{"class" : "team-name"})
-teamList = [""]
-for each in teamName:
+preScrapeTeamNames = soup.find_all('div',{"class" : "team-name"})
+teamList = []
+for each in preScrapeTeamNames:
     name = each.text
     tier = name[:1]
     if tier != 'S' and tier != 'A':
         continue
     newName = name[1:]
     teamList.append(newName)
-    
+
+numOfTeamCharactersNeeded = len(teamList)
+preScrapeTeamCharactersAll = soup.find_all('div',{"class" : "team-characters"})
+preScrapeTeamCharactersStoA = preScrapeTeamCharactersAll[:numOfTeamCharactersNeeded]
+
+#work witht his to get the a class and href from that a class
