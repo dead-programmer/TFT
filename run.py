@@ -7,19 +7,22 @@ user_input = []
 
 def get_user_input():
     user_input_string = input("What champions do you have?")
-    user_input_string = user_input_string.split(" ")
+    user_input = user_input_string.split(" ")
 
-    print(user_input_string)
+    print(user_input)
 
-    for i in user_input_string:
+    for i in user_input:
         if '-' in i:
             team_comps.delete_champ(i)
         else:
             team_comps.add_champ(i)
 
-    calculate.match(user_input, team_comps.tier_S)
+    print(user_input)
+    # calculate.match(user_input, team_comps.tier_S)
+    # print(calculate.score_calculator(user_input)['team_name'])
 
 
 while 1:
-    team_comps.get_team_data()
+
     get_user_input()
+    team_comps.get_team_data()

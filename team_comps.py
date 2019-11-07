@@ -1,5 +1,6 @@
 from pprint import pprint
 import champ_and_item
+import calculate
 
 
 def valid_name(name):
@@ -11,8 +12,19 @@ def valid_name(name):
 
 
 def get_team_data():
-    pprint(team_data)
+    # pprint(team_data)
     return team_data
+
+
+def need_champ(user_team, final_team):
+    champ_needed = []
+    for champion in final_team:
+        if champion in user_team:
+            pass
+        else:
+            champ_needed.expand(champion)
+
+    print("Champions that you still need: ", champ_needed)
 
 
 def add_champ(champ_name):
@@ -22,6 +34,9 @@ def add_champ(champ_name):
     else:
         print("Champion %s is not valid, please enter a valid champion's name" % champ_name)
         print(user_team)
+
+    calculate.score_calculator(user_team)
+    # print(calculate.score_calculator(user_team)['team_name'])
 
 
 def delete_champ(champ_string):                            # -champion_name
@@ -33,6 +48,9 @@ def delete_champ(champ_string):                            # -champion_name
         print(user_team)
     else:
         print("Champion %s is not in the user champion list, please enter a valid champion's name" % champ_name)
+
+    calculate.score_calculator(user_team)
+    # print(calculate.score_calculator(user_team)['team_name'])
 
 
 tier_S = []
