@@ -41,16 +41,25 @@ soup = BeautifulSoup(renderedHTML,"html.parser")
 teamCharacters = soup.find_all(class_="team-characters")
 preScrapeTeamNames = soup.find_all('div',{"class" : "team-name"})
 teamList = []
+tierList = []
 for each in preScrapeTeamNames:
     name = each.text
     tier = name[:1]
     if tier != 'S' and tier != 'A':
         continue
+    tierList.append(tier)
     newName = name[1:]
     teamList.append(newName)
-
+print(tierList)
 numOfTeamCharactersNeeded = len(teamList)
 preScrapeTeamCharactersAll = soup.find_all('div',{"class" : "team-characters"})
 preScrapeTeamCharactersStoA = preScrapeTeamCharactersAll[:numOfTeamCharactersNeeded]
 
+#a = soup.find_all(class_="characters-list")
 #work witht his to get the a class and href from that a class
+''' possible solution
+for a in preScrapeTeamCharactersStoA:
+    for i in  a.find_all('img', alt=True):
+        c = i['src']
+        print(c)
+'''
