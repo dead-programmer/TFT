@@ -4,6 +4,7 @@ tft/
 __pycache__/
 .DSStore
 venv/
+freq.py
 # Compiled source #
 ###################
 *.com
