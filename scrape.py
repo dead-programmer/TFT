@@ -33,56 +33,63 @@ def render(url):
 import requests
 from bs4 import BeautifulSoup
 
-url = "https://tftactics.gg/tierlist/team-comps/"
-html = requests.get(url).text
-renderedHTML = render(url)
-soup = BeautifulSoup(renderedHTML,"html.parser")
-#Returns a list of all the team characters (use their hrefs to parse the names)
-teamCharacters = soup.find_all(class_="team-characters")
-preScrapeTeamNames = soup.find_all('div',{"class" : "team-name"})
-teamList = []
-tierList = []
-for each in preScrapeTeamNames:
-    name = each.text
-    tier = name[:1]
-    if tier != 'S' and tier != 'A':
-        continue
-    tierList.append(tier)
-    newName = name[1:]
-    teamList.append(newName)
-numOfTeamCharactersNeeded = len(teamList)
-preScrapeTeamCharactersAll = soup.find_all('div',{"class" : "team-characters"})
-preScrapeTeamCharactersStoA = preScrapeTeamCharactersAll[:numOfTeamCharactersNeeded]
+def scrape():
+    url = "https://tftactics.gg/tierlist/team-comps/"
+    html = requests.get(url).text
+    renderedHTML = render(url)
+    soup = BeautifulSoup(renderedHTML,"html.parser")
+    #Returns a list of all the team characters (use their hrefs to parse the names)
+    teamCharacters = soup.find_all(class_="team-characters")
+    preScrapeTeamNames = soup.find_all('div',{"class" : "team-name"})
+    teamList = []
+    tierList = []
+    for each in preScrapeTeamNames:
+        name = each.text
+        tier = name[:1]
+        if tier != 'S' and tier != 'A':
+            continue
+        tierList.append(tier)
+        newName = name[1:]
+        teamList.append(newName)
+    numOfTeamCharactersNeeded = len(teamList)
+    preScrapeTeamCharactersAll = soup.find_all('div',{"class" : "team-characters"})
+    preScrapeTeamCharactersStoA = preScrapeTeamCharactersAll[:numOfTeamCharactersNeeded]
 
-#a = soup.find_all(class_="characters-list")
-#work witht his to get the a class and href from that a class
-''' possible solution
-for a in preScrapeTeamCharactersStoA:
-    for i in  a.find_all('img', alt=True):
-        c = i['src']
-        print(c)
+    #a = soup.find_all(class_="characters-list")
+    #work witht his to get the a class and href from that a class
+    ''' possible solution
+    for a in preScrapeTeamCharactersStoA:
+        for i in  a.find_all('img', alt=True):
+            c = i['src']
+            print(c)
 
 
-for j in b:                                         
-    c = j.find_all("div",{"class":"team-portrait"})
-    for k in c:
-        d = k.find("div",{"class":"team-characters"})
-        print(d)
-
-'''
-a = soup.find_all("div",{"class" : "tier-group"})
-empty_list = []
-for i in range(0,2):
-    b = a[i].find_all("div",{"class":"characters-list"})
-    for j in b:
+    for j in b:                                         
         c = j.find_all("div",{"class":"team-portrait"})
         for k in c:
             d = k.find("div",{"class":"team-characters"})
-            for q in d:
-                y = d.find_all('a', href=True)
-                team = [] 
-                for p in y:      
-                    team.append(p["href"])
-                empty_list.append(team)
+            print(d)
 
-#problem is theres is 102 elements in the empty_list but there should only be 13?
+    '''
+    tierGroupSoup = soup.find_all("div",{"class" : "tier-group"})
+    charactersFound = []
+    for i in range(0,2):
+        charactersListSoup = tierGroupSoup[i].find_all("div",{"class":"characters-list"})
+        for j in charactersListSoup:
+            teamPortraitSoup = j.find_all("div",{"class":"team-portrait"})
+            for k in teamPortraitSoup:
+                teamCharactersSoup = k.find("div",{"class":"team-characters"})
+                hrefSoup = teamCharactersSoup.find_all('a', href=True)
+                team = []
+                for p in hrefSoup:      
+                    if p["href"] != "/item-builder":
+                        name = p["href"]
+                        splitName = name.split("/")
+                        name = splitName[2]
+                        team.append(name)
+                charactersFound.append(team)
+
+    teamDictionary = dict(zip(teamList, charactersFound))
+    tierDictionary = dict(zip(teamList, tierList))
+
+    return tierDictionary, teamDictionary
