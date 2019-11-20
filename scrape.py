@@ -54,23 +54,6 @@ def scrape():
     numOfTeamCharactersNeeded = len(teamList)
     preScrapeTeamCharactersAll = soup.find_all('div',{"class" : "team-characters"})
     preScrapeTeamCharactersStoA = preScrapeTeamCharactersAll[:numOfTeamCharactersNeeded]
-
-    #a = soup.find_all(class_="characters-list")
-    #work witht his to get the a class and href from that a class
-    ''' possible solution
-    for a in preScrapeTeamCharactersStoA:
-        for i in  a.find_all('img', alt=True):
-            c = i['src']
-            print(c)
-
-
-    for j in b:                                         
-        c = j.find_all("div",{"class":"team-portrait"})
-        for k in c:
-            d = k.find("div",{"class":"team-characters"})
-            print(d)
-
-    '''
     tierGroupSoup = soup.find_all("div",{"class" : "tier-group"})
     charactersFound = []
     for i in range(0,2):
