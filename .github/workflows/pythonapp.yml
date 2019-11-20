@@ -1,4 +1,4 @@
-name: TFT Plugin-master
+name: TFT Plugin
 
 on: [pull_request]
 
