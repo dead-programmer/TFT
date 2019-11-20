@@ -11,14 +11,13 @@ def valid_name(name):
 
 
 def get_team_data():
-    pprint(team_data)
     return team_data
 
 
 def add_champ(champ_name):
     if valid_name(champ_name):
         user_team.append(champ_name)
-        print(user_team)
+        print("Your current team: %s\n" % user_team)
     else:
         print("Champion %s is not valid, please enter a valid champion's name" % champ_name)
         print(user_team)
