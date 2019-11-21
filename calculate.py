@@ -89,5 +89,5 @@ def recommend(team_list):
 
 def remove_from_hit_list(removed_champ):
     for hit in hit_list:
-        if removed_champ in teams[hit]:
+        if removed_champ in team_comps.team_data[hit]:
             hit_list.remove(hit)
