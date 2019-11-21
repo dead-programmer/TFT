@@ -14,9 +14,14 @@ def get_user_input():
         else:
             team_comps.add_champ(i)
 
-    result = calculate.match(user_input_string)
-    print("Recommended team(s) ----> %s\n" % result)
+    best_team = calculate.match(user_input_string)
+    missing = calculate.recommend(best_team)
+    print("Recommended team(s) ----> %s\n" % best_team)
+    print("Recommended champion(s) ----> %s\n" % missing)
 
+
+print("Welcome to our plugin!")
+print("This will recommend you team(s) based on what champions you have  :)\n\n")
 
 while 1:
     team_comps.get_team_data()
