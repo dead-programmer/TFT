@@ -1,6 +1,7 @@
-''' Lines 2-28 were taken from:
-https://stackoverflow.com/questions/37754138/how-to-render-html-with-pyqt5s-qwebengineview
-'''
+import requests
+from bs4 import BeautifulSoup
+
+
 def render(url):
     """Fully render HTML, JavaScript and all."""
 
@@ -29,9 +30,6 @@ def render(url):
 
     return Render(url).html
 
-
-import requests
-from bs4 import BeautifulSoup
 
 def scrape():
     url = "https://tftactics.gg/tierlist/team-comps/"

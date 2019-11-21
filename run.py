@@ -1,6 +1,7 @@
 import calculate
 import team_comps
-import scrape
+import champ_and_item
+from scrape import scrape
 
 user_input = []
 
@@ -22,7 +23,11 @@ def get_user_input():
 
 print("Welcome to our plugin!")
 print("This will recommend you team(s) based on what champions you have  :)\n\n")
+print("Scraping latest meta data...")
+_temp, team_comps.team_data = scrape()
+print("Updating champion list with latest...")
+champ_and_item.update()
+print("Done.\n\n")
 
 while 1:
-    team_comps.get_team_data()
     get_user_input()
