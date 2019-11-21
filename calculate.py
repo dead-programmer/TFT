@@ -56,8 +56,8 @@ def score_calculator(user_team):
 def match(input_list):
     # Iterate through user inputs, then append matches to hit_list
     for champion in input_list:
-        for match in teams:
-            if champion in teams[match]:
+        for match in team_comps.team_data:
+            if champion in team_comps.team_data[match]:
                 hit_list.append(match)
     if hit_list:
         # FIND UNIQUE

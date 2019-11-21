@@ -37,28 +37,4 @@ def delete_champ(champ_string):                            # -champion_name
 
 tier_S = []
 user_team = []
-
-# TODO: use web scraper to pull the following data automatically
-team_data = {
-    'void_brawlers':
-        ['khazix',
-         'blitzcrank',
-         'reksai',
-         'vi',
-         'akali',
-         'chogath',
-         'jinx',
-         'kaisa']
-    ,
-
-    'imperial_knights':
-        ['darius',
-         'garen',
-         'mordekaiser',
-         'poppy',
-         'katarina',
-         'draven',
-         'sejuani',
-         'kayle',
-         'swain']
-}
+team_data = []
