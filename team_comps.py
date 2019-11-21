@@ -1,5 +1,5 @@
-from pprint import pprint
 import champ_and_item
+import calculate
 
 
 def valid_name(name):
@@ -29,6 +29,7 @@ def delete_champ(champ_string):                            # -champion_name
 
     if champ_name in user_team:
         user_team.remove(champ_name)  # remove("champion_name")
+        calculate.remove_from_hit_list(champ_name) # fix for bug
         print(user_team)
     else:
         print("Champion %s is not in the user champion list, please enter a valid champion's name" % champ_name)

@@ -78,3 +78,16 @@ def match(input_list):
                 best_team.append(team)
     return best_team
 
+
+# Returns the difference between the user team and the calculated best team(s)
+def recommend(team_list):
+    results = []
+    for team in team_list:
+        results.append(list(set(team_comps.team_data[team]) - set(team_comps.user_team)))
+    return results
+
+
+def remove_from_hit_list(removed_champ):
+    for hit in hit_list:
+        if removed_champ in teams[hit]:
+            hit_list.remove(hit)
