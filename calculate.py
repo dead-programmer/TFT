@@ -1,4 +1,5 @@
 import team_comps
+from collections import Counter
 
 teams = team_comps.team_data
 best_team = []
@@ -14,7 +15,7 @@ def score_calculator(user_team):
         'team_name': '',
         'team_champ': []
     }
-    for team_comp in teams:
+    for team_comp in team_comps.team_data:
         score = 0
         for champion in user_team:
             if champion in teams[team_comp]:
@@ -59,31 +60,21 @@ def match(input_list):
         for match in team_comps.team_data:
             if champion in team_comps.team_data[match]:
                 hit_list.append(match)
-    if hit_list:
-        # FIND UNIQUE
-        for hit in hit_list:
-            if hit not in unique_list:
-                unique_list.append(hit)
 
-        max_count = 0
-
-        # Logic for deciding ties between teams
-        for team in unique_list:
-            count = hit_list.count(team)
-            if count > max_count:
-                max_count = count
-                del best_team[:]
-                best_team.append(team)
-            elif count == max_count:
-                best_team.append(team)
-    return best_team
+    top3 = (Counter(hit_list)).most_common(3)
+    return top3
 
 
 # Returns the difference between the user team and the calculated best team(s)
-def recommend(team_list):
+def recommend_multiple(team_list):
     results = []
+    temp = []
     for team in team_list:
-        results.append(list(set(team_comps.team_data[team]) - set(team_comps.user_team)))
+        results.append(list(set(team_comps.team_data[team[0]]) - set(team_comps.user_team)))
+    for item in results:
+        for champion in item:
+            temp.append(champion)
+    results = list(set(temp))
     return results
 
 
