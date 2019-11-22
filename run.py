@@ -36,10 +36,10 @@ def get_user_input():
 
     check = user_input_string[0]
 
-    if len(user_input_string) is 1 and is_int(check[1]) and check[0] is 'l':
+    if len(user_input_string) == 1 and is_int(check[1]) and check[0] == 'l':
         index = int(check[1])
         if index > len(best_team) or index < 1:
-            if len(best_team) is 0:
+            if len(best_team) == 0:
                 print(text_colors.RED + "There's no enough data in the best team, fail to print" + text_colors.END_COLOR)
             else:
                 print(text_colors.RED + "Invalid input of index, please enter a valid index" + text_colors.END_COLOR)
